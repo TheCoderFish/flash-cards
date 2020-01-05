@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Flash } from './flash.model';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -7,16 +8,18 @@ import { Flash } from './flash.model';
 export class FlashCardService {
 
   private data = [
-    new Flash('1', '1', true, 1),
-    new Flash('2', '2', true, 2),
-    new Flash('3', '3', true, 3),
-    new Flash('4', '4', true, 4)
   ]
 
   constructor() { }
 
   public mockData() {
     return this.data;
+  }
+
+  public addFlashCard(flashForm) {
+    const { question, answer } = flashForm;
+    const flashCard: Flash = new Flash(question, answer, true, this.generateId());
+    this.data.push(flashCard);
   }
 
   public deleteCard(flashId: number) {
@@ -27,5 +30,10 @@ export class FlashCardService {
 
   public markChange(flashId) {
 
+  }
+
+  public generateId():number{
+    //to be replaced with a uniquedId generator
+    return this.data.length + Math.floor(Math.random()*1000);
   }
 }

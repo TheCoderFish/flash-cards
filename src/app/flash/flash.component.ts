@@ -1,17 +1,14 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Flash, remembered, MarkChange } from './../flash.model';
 
-
-
 @Component({
   selector: 'app-flash',
   templateUrl: './flash.component.html',
   styleUrls: ['./flash.component.scss']
 })
-export class FlashComponent implements OnInit {
+export class FlashComponent {
 
   @Input() public flash: Flash;
-
   @Output() public toggleCard: EventEmitter<number>;
   @Output() public editCard: EventEmitter<number>;
   @Output() public deleteCard: EventEmitter<number>;
@@ -22,9 +19,6 @@ export class FlashComponent implements OnInit {
     this.editCard = new EventEmitter<number>();
     this.deleteCard = new EventEmitter<number>();
     this.markChange = new EventEmitter<MarkChange>();
-  }
-
-  ngOnInit() {
   }
 
   public markCorrect(flashId: number) {

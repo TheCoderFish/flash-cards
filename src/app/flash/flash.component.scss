@@ -2,21 +2,21 @@
     width: 300px;
     display: inline-block;
     margin: 10px;
+    .card-header {
+        cursor: pointer;
+    }
+    .card-header.correct {
+        background: #51be51;
+    }
+    .card-header.incorrect {
+        background: red;
+    }
+    .correct,.incorrect{
+        .card-header-title{
+            color: white;
+        }
+    }    
 }
 
-.card-header {
-    cursor: pointer;
-}
 
-.card-header.correct {
-    background: #51be51;
-}
 
-.card-header.incorrect {
-    background: red;
-}
-
-.correct .card-header-title,
-.incorrect .card-header-title {
-    color: white;
-}

@@ -14,8 +14,8 @@ export class FlashFormComponent implements OnInit {
   private editMode: boolean = false;
   private editCard: Flash;
 
-  constructor(private fb: FormBuilder,
-    private flashCardService: FlashCardService) { }
+  constructor(private flashCardService: FlashCardService,
+              private fb: FormBuilder) { }
 
   ngOnInit() {
     this.flashForm = this.fb.group({
@@ -41,6 +41,7 @@ export class FlashFormComponent implements OnInit {
     this.editCard.answer = answer;
     this.flashCardService.updateCard(this.editCard);
     this.editMode = false;
+    this.editCard = null;
     this.flashForm.reset();
   }
 

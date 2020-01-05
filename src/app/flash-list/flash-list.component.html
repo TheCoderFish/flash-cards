@@ -1,3 +1,9 @@
-<ng-container *ngFor="let card of cards" ; trackBy:trackByFlashId>
-    <app-flash [flash]="card" (toggleCard)="handleToggleCard($event)" (editCard)="editCard($event)" (deleteCard)="deleteCard($event)" (markChange)="markChange($event)"></app-flash>
+<ng-container *ngFor="let card of cards | async" ; trackBy:card.id>
+  <app-flash
+    [flash]="card"
+    (toggleCard)="flashCardService.handleToggleCard($event)"
+    (editCard)="flashCardService.editCard($event)"
+    (deleteCard)="flashCardService.deleteCard($event)"
+    (markChange)="flashCardService.markChange($event)"
+  ></app-flash>
 </ng-container>

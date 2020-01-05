@@ -18,6 +18,11 @@ export class FlashListComponent implements OnInit {
     this.cards = this.flashCardService.mockData();
   }
 
+  public handleToggleCard(flashId: number) {
+    const flash = this.cards.find(flash => flash.id === flashId);
+    flash.show = !flash.show;
+  }
+
 
   trackByFlashId(index, flash) {
     return flash.id;

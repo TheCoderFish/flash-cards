@@ -1,3 +1,3 @@
 <ng-container *ngFor="let card of cards" ; trackBy:trackByFlashId>
-    <app-flash [flash]="card"></app-flash>
+    <app-flash [flash]="card" (toggleCard)="handleToggleCard($event)"></app-flash>
 </ng-container>

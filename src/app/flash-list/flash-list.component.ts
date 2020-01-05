@@ -13,4 +13,8 @@ export class FlashListComponent {
   @Input() cards: Observable<Flash[]> = this.flashCardService.flashCards$;
 
   constructor(private flashCardService: FlashCardService) {}
+
+  public get flashService(){
+    return this.flashCardService;
+  }
 }

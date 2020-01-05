@@ -1,5 +1,5 @@
 <form [formGroup]="flashForm">
-    <h1 class="is-size-3">{{ !editMode ? 'Add New' : 'Update'}} Flash Card</h1>
+    <h1 class="is-size-3">{{ !editModeTemp ? 'Add New' : 'Update'}} Flash Card</h1>
     <div class="field">
         <label class="label">Question</label>
         <div class="control has-icons-right">
@@ -21,7 +21,7 @@
         <p *ngIf="isValid('answer')" class="help is-danger">Answer is required field.</p>
     </div>
 
-    <ng-container *ngIf="editMode; else elseTemplate">
+    <ng-container *ngIf="editModeTemp; else elseTemplate">
         <button class="button is-primary" type="button" [disabled]="flashForm.invalid" (click)="updateFlashCard()">Update</button>
     </ng-container>
     <ng-template #elseTemplate>

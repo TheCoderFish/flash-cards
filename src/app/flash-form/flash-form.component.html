@@ -1,5 +1,5 @@
 <form [formGroup]="flashForm">
-    <h1 class="is-size-3">Add New Flash Card</h1>
+    <h1 class="is-size-3">{{ !editMode ? 'Add New' : 'Update'}} Flash Card</h1>
     <div class="field">
         <label class="label">Question</label>
         <div class="control has-icons-right">
@@ -21,6 +21,12 @@
         <p *ngIf="isValid('answer')" class="help is-danger">Answer is required field.</p>
     </div>
 
-    <button class="button is-primary" type="button" [disabled]="flashForm.invalid" (click)="addFlashCard()">Submit</button>
+    <ng-container *ngIf="editMode; else elseTemplate">
+        <button class="button is-primary" type="button" [disabled]="flashForm.invalid" (click)="updateFlashCard()">Update</button>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <button class="button is-primary" type="button" [disabled]="flashForm.invalid" (click)="addFlashCard()">Submit</button>
+    </ng-template>
+
     <button class="button clear-btn" type="button" (click)="flashForm.reset()">Clear</button>
 </form>

@@ -15,7 +15,7 @@ export class FlashListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cards = this.flashCardService.mockData();
+    this.cards = this.flashCardService.getCards();
   }
 
   public handleToggleCard(flashId: number) {
@@ -24,7 +24,7 @@ export class FlashListComponent implements OnInit {
   }
 
   public editCard(flashId: number) {
-
+    this.flashCardService.editCard(flashId);
   }
 
   public deleteCard(flashId: number) {
@@ -32,16 +32,12 @@ export class FlashListComponent implements OnInit {
 
   }
   public markChange(change: MarkChange) {
-    const card = this.cards.find(card=>card.id === change.id);
+    const card = this.cards.find(card => card.id === change.id);
     card.remembered = change.remembered;
 
   }
 
-
-
-
   trackByFlashId(index, flash) {
     return flash.id;
   }
-
 }

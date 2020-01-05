@@ -11,6 +11,8 @@ import { Flash } from '../flash.model';
 export class FlashFormComponent implements OnInit {
 
   public flashForm: FormGroup;
+  private editMode: boolean = false;
+  private editCard: Flash;
 
   constructor(private fb: FormBuilder,
     private flashCardService: FlashCardService) { }
@@ -20,12 +22,26 @@ export class FlashFormComponent implements OnInit {
       question: ['', [Validators.required]],
       answer: ['', [Validators.required]],
     });
+
+    this.flashCardService.editMode$.subscribe((card: Flash) => {
+      this.editCard = {...card};
+      this.editMode = true;
+      this.flashForm.patchValue(card);
+    });
   }
 
   public addFlashCard() {
     this.flashCardService.addFlashCard(this.flashForm.value);
     this.flashForm.reset();
-   
+  }
+
+  public updateFlashCard(){
+    const {question, answer} = this.flashForm.value;
+    this.editCard.question = question;
+    this.editCard.answer = answer;
+    this.flashCardService.updateCard(this.editCard);
+    this.editMode = false;
+    this.flashForm.reset();
   }
 
   public isValid(controlName: string) {

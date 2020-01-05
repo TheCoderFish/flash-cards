@@ -8,4 +8,9 @@ export class Flash {
     ) { }
 }
 
-type remembered = 'correct' | 'incorrect';
+export type remembered = 'correct' | 'incorrect';
+
+export interface MarkChange {
+    id: number;
+    remembered: remembered
+}
